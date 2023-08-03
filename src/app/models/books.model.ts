@@ -3,7 +3,7 @@ import { Publication } from './publication.model';
 
 export interface Book {
   publication: Publication;
-  _id: string;
+  _id?: string;
   title: string;
   authors: Author[];
   language: string;

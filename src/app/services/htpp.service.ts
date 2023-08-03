@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Book } from '../models/books.model';
 
@@ -19,7 +19,9 @@ export class HtppService {
     return this._http.get<Book>(`${this.baseUrl}/books/${id}`);
   }
 
-  addBook(): Observable<Book> {
-    return this._http.post<Book>(`${this.baseUrl}/add-book`, { body: Object });
+  addBook(body: Object): Observable<{ msg: string }> {
+    return this._http.post<{ msg: string }>(`${this.baseUrl}/add-book`, body, {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+    });
   }
 }

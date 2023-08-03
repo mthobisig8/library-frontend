@@ -1,22 +1,149 @@
 <div class="container">
-  <div class="mb-3">
-    <label class="form-label">Book Title</label>
-    <input type="text" class="form-control" placeholder="Book title" />
-  </div>
-  <div class="mb-3">
-    <label class="form-label">Language</label>
-    <select class="form-select">
-      <option *ngFor="let language of languages">{{ language }}</option>
-    </select>
-  </div>
+  <form (ngSubmit)="onSubmit(bookForm)" #bookForm="ngForm">
+    <div class="form-group">
+      <div class="mb-3">
+        <label class="form-label">Book Title</label>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Book title"
+          name="title"
+          ngModel
+          #title="ngModel"
+          required
+          id="title"
+        />
+        <div *ngIf="!title.valid && title.touched" class="alert alert-danger">
+          Title is required!
+        </div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Language</label>
+        <select
+          class="form-select"
+          id="language"
+          ngModel
+          name="langauge"
+          #language="ngModel"
+          required
+        >
+          <option *ngFor="let language of languages" [value]="language">
+            {{ language }}
+          </option>
+        </select>
+      </div>
+      <div
+        *ngIf="!language.valid && language.touched"
+        class="alert alert-danger"
+      >
+        Select a langauge
+      </div>
 
-  <div class="row">
-    <label class="form-label">Author's Names</label>
-    <div class="col">
-      <input type="text" class="form-control" placeholder="First name" />
+      <div class="row">
+        <label class="form-label">Author's Names</label>
+        <div class="col">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="First name"
+            name="fname"
+            ngModel
+            id="fname"
+            #fname="ngModel"
+            required
+          />
+        </div>
+        <div class="col">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Last name"
+            name="lname"
+            ngModel
+            id="lname"
+            #lname="ngModel"
+            required
+          />
+        </div>
+      </div>
+      <div
+        *ngIf="
+          (!fname.valid && fname.touched) || (!lname.valid && lname.touched)
+        "
+        class="alert alert-danger"
+      >
+        First and last names are required!
+      </div>
+
+      <hr />
+
+      <div class="row">
+        <label class="form-label next-section">Publication</label>
+        <div class="col">
+          <div class="mb-3">
+            <label class="form-label">Cover image url</label>
+            <input
+              type="url"
+              class="form-control"
+              placeholder="URL"
+              name="url"
+              ngModel
+              id="url"
+              #url="ngModel"
+              required
+            />
+          </div>
+          <div *ngIf="!url.valid && url.touched" class="alert alert-danger">
+            image url is required!
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Publisher's name</label>
+            <input
+              type="text"
+              class="form-control publish"
+              placeholder="Publisher's name"
+              name="pname"
+              ngModel
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Date of publication</label>
+            <input
+              type="date"
+              class="form-control publish"
+              placeholder="Date of publication"
+              name="date"
+              ngModel
+              required
+            />
+          </div>
+        </div>
+        <div class="col">
+          <img src="{{ url.value }}" alt="book cover" />
+        </div>
+      </div>
+
+      <button
+        class="btn btn-primary"
+        type="submit"
+        [disabled]="bookForm.invalid"
+      >
+        Submit
+      </button>
+      <div
+        *ngIf="message"
+        class="alert alert-warning alert-dismissible fade show"
+        role="alert"
+      >
+        <strong>{{ message }}</strong>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="alert"
+          aria-label="Close"
+        ></button>
+      </div>
     </div>
-    <div class="col">
-      <input type="text" class="form-control" placeholder="Last name" />
-    </div>
-  </div>
+  </form>
 </div>

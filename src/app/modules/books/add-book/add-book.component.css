@@ -1,0 +1,11 @@
+input.ng-invalid.ng-touched.publish {
+  border: 1px solid red;
+}
+
+.btn {
+  width: 100px;
+}
+
+.show {
+  margin: 20px;
+}

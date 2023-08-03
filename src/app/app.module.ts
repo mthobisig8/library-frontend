@@ -11,6 +11,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BooksModule } from './modules/books/books.module';
 import { HttpClientModule } from '@angular/common/http';
 import { BooksState } from './store/books-store.state';
+import { FormsModule } from '@angular/forms';
+import { UsersModule } from './modules/users/users.module';
 
 @NgModule({
   declarations: [AppComponent, NavComponent, SpinnerComponent],
@@ -18,7 +20,9 @@ import { BooksState } from './store/books-store.state';
     BrowserModule,
     AppRoutingModule,
     NgbModule,
+    FormsModule,
     BooksModule,
+    UsersModule,
     HttpClientModule,
     NgxsModule.forRoot([]),
     NgxsReduxDevtoolsPluginModule.forRoot(),
