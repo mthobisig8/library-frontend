@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="mb-3">
+    <label class="form-label">Book Title</label>
+    <input type="text" class="form-control" placeholder="Book title" />
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Language</label>
+    <select class="form-select">
+      <option *ngFor="let language of languages">{{ language }}</option>
+    </select>
+  </div>
+
+  <div class="row">
+    <label class="form-label">Author's Names</label>
+    <div class="col">
+      <input type="text" class="form-control" placeholder="First name" />
+    </div>
+    <div class="col">
+      <input type="text" class="form-control" placeholder="Last name" />
+    </div>
+  </div>
+</div>
